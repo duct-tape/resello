@@ -1,2 +1,2 @@
-# reselllo
+# resello
 Resello Reseller API Python client
