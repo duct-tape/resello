@@ -18,10 +18,14 @@ with open('resello/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
                         fd.read(), re.MULTILINE).group(1)
 
-with open('README.rst', 'r', 'utf-8') as f:
+with open('README.md', 'r', 'utf-8') as f:
     readme = f.read()
-with open('HISTORY.rst', 'r', 'utf-8') as f:
-    history = f.read()
+
+try:
+    with open('HISTORY.md', 'r', 'utf-8') as f:
+        history = f.read()
+except IOError:
+    history = ""
 
 
 setup(
