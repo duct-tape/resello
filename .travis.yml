@@ -3,6 +3,7 @@ python:
   - "2.7"
   - "3.5"
 install:
+  - pip install .
   - pip install requests
   - pip install pytest
 # command to run tests
