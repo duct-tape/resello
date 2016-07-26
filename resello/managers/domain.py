@@ -18,12 +18,14 @@ class DomainManager(GenericManager):
         return self.get('?embed=tld,reseller,contacts,hosts,redirects')
 
     def details(self, uuid):
-        return self.get('/{}?extended=1&embed=tld,reseller,contacts,hosts,redirects'.format(uuid))
+        return self.get(
+            '/{}?extended=1&embed=tld,reseller,contacts,hosts,redirects'.format(
+                uuid))
 
     def update(self, uuid, payload):
         return self.put('/{}'.format(uuid), payload)
 
-    def create_domain(self, name, contacts, reference=None):
+    def create_domain(self, name, contacts, interval=None, reference=None):
         payload = {
             'name': name,
             'contacts': contacts,
@@ -31,5 +33,17 @@ class DomainManager(GenericManager):
         }
         if reference is not None:
             payload['client_reference'] = reference
+
+        if interval is not None:
+            payload['interval'] = interval
+
         return self.post(path='', payload=payload)
 
+    def renew_domain(self, domain_id, expires, interval=None):
+        payload = {
+            'current_expiration_date': expires,
+        }
+        if interval is not None:
+            payload['interval'] = interval
+
+        return self.post(path='/{}/renew'.format(domain_id), payload=payload)
