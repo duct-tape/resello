@@ -11,10 +11,8 @@ Basic Usage:
 >>> response = client.domain.all()
 >>> response.status
 True
->>> response.result
-[
-    {
-        'id': '32a4-....',
-    }
-]
+>>> for domain in response:
+>>>    print(domain)
+{'id': '32a4-....', ....}
+{'id': 'd764-....', ....}
 ```
