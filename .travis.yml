@@ -4,7 +4,8 @@ python:
   - "3.5"
 install:
   - pip install .
-  - pip install requests
+  - pip install mock
   - pip install pytest
+  - pip install -r ./requirements.txt
 # command to run tests
 script: py.test tests

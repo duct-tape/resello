@@ -1,8 +1,8 @@
 class GenericManager(object):
     """
     Generic manager class.
-    
-    Managers are abstraction proxies meant to 
+
+    Managers are abstraction proxies meant to
     simplify and structurize client interface.
     """
 

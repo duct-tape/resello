@@ -3,7 +3,7 @@ from collections import defaultdict
 
 class ReselloResponse(object):
     """
-    The :class:`Response <Response>` object, which contains a
+    The :class:`Response <Response>` object, contains a
     server's response to an HTTP request.
     """
 
@@ -28,6 +28,29 @@ class ReselloResponse(object):
         self._response = response
 
         self.errors = defaultdict(list)
+
+    def __getattr__(self, name):
+        return self.result[name]
+
+    def __repr__(self):
+        return repr(self.result)
+
+    def __nonzero__(self):
+        return not self.has_errors
+
+    def __len__(self):
+        if self.has_errors:
+            return 0
+
+        return len(self.result)
+
+    def __getitem__(self, index):
+        return self.result[index]
+
+    def __cmp__(self, other):
+        if other is None or other is False:
+            return self.has_errors
+        return False
 
     @property
     def status_code(self):
