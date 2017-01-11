@@ -12,7 +12,7 @@ def details(client, instance_id):
     """
     Get instance details.
     """
-    return client.vps.details(uuid=instance_id)
+    return client.vps.details(instance_id=instance_id)
 
 
 def get_access(client, instance_id):
