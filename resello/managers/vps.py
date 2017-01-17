@@ -56,6 +56,12 @@ class VPSManager(GenericManager):
         """
         return self.get('instance/{id}'.format(id=instance_id))
 
+    def control_panel(self, instance_id):
+        """
+        Fetch instance control panel url
+        """
+        return self.get('instance/{id}/control-panel'.format(id=instance_id))
+
     def images(self):
         """
         Fetch list of available images.
